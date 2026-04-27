@@ -1,44 +1,92 @@
-# Task-management-app
-task management application where users can perform CRUD operations on tasks.
+# Laravel Training Scaffold — Student Instructions
 
-**CRUD Operations:**<br>
-Create, read, update, and delete tasks.<br>
-Each task have a title, description, and status (e.g., "To Do," "In Progress," "Completed").<br><br>
-**Web Hooks:**<br>
-Implement a Web Hook system that triggers notifications when a task is created and admin or manager can further notify the user about that task.<br>
-Notifications are sent via email.<br><br>
-**Front-end:**<br>
-Use HTML and Bootstrap 5 to create a simple and intuitive task management interface.<br>
-<br>
-**ACL (Access Control List):**<br>
-Implement ACL to control access to certain tasks based on user roles.<br>
-Defined roles such as "Admin," "Manager," and "User."<br>
-Assigned permissions to roles (e.g., Admin can perform all actions, Manager can edit tasks, User can only view
-tasks).<br><br>
-**User Authentication and Authorization:**<br>
-Integrated Laravel Auth UI for user authentication.<br>
-Implemented middleware to check user permissions before allowing access to certain routes.<br>
-Include a feature that allows users to provide feedback on tasks.<br><br>
+This is the starter codebase for the Kalvium 12-Day Laravel Training program.
 
-**Implementation Guidelines:**
-Used Laravel's Eloquent ORM for interacting with the database.
-Designed a database schema to store task information.
-Defined routes for CRUD operations.
-Created separate controllers for handling task-related actions.
-Used Blade templates for rendering views.
-Implemented event listeners and events for Web Hooks.
-Implemented middleware to check user permissions.
-Enhanced UI to reflect user roles and permissions.
-<br>
-<hr>
-****Some Home Screens****<br><hr>
-**User's home** <br>
-![image](https://github.com/UmerFarooq966/Task-management-app---Laravel-10/assets/94523330/5b3511b4-bf93-4493-8f06-20511e17d694)
+## What this repo is
 
- <br>
-**Admin Home**<br>
-![image](https://github.com/UmerFarooq966/Task-management-app---Laravel-10/assets/94523330/e83d2f9a-694e-4891-a71a-796feb527663)
+This codebase is **intentionally incomplete**. Routes are stubs that throw 501 errors. Models have no relationships. Views are placeholders. Migrations have empty schemas.
 
- <br>
-**Manager Home**<br>
-![image](https://github.com/UmerFarooq966/Task-management-app---Laravel-10/assets/94523330/3701aebf-f5e4-4ca4-a737-9d0d71a83572)
+Across 12 days, you'll fill in TODO comments aligned with each day's learning topic. By Day 12, this becomes a fully working Task & Project Management System.
+
+## Day 1 setup
+
+```bash
+# 1. Fork this repo to your own GitHub account, then clone YOUR fork:
+git clone https://github.com/YOUR-USERNAME/laravel-training-scaffold.git laravel-training-yourname
+cd laravel-training-yourname
+
+# 2. Install dependencies
+composer install
+
+# 3. Create environment file
+cp .env.example .env
+php artisan key:generate
+
+# 4. Create a local MySQL database, then update .env:
+#    DB_DATABASE=laravel_training
+#    DB_USERNAME=root
+#    DB_PASSWORD=...
+
+# 5. Migrate (don't run --seed yet — seeders are TODOs for Day 4!)
+php artisan migrate
+
+# 6. Run the app
+php artisan serve
+# Visit localhost:8000 — you should see the Laravel welcome page
+```
+
+If localhost:8000 loads, your Day 1 deliverable is done.
+
+## How to find your daily TODOs
+
+Each day has tagged TODOs throughout the codebase. To see your tasks for the day:
+
+```bash
+grep -rn "TODO Day 5"   # for Day 5
+grep -rn "TODO Day 6"   # for Day 6
+# etc.
+```
+
+You can also see ALL TODOs at once:
+
+```bash
+grep -rn "TODO Day" --include="*.php" --include="*.blade.php"
+```
+
+## Daily workflow
+
+1. Open the spreadsheet — find today's row
+2. Watch the day's primary video + read docs (≈2 hrs)
+3. Run `grep -rn "TODO Day X"` to find your tasks
+4. Implement each TODO (≈2 hrs); replace the `// TODO` comment with your code
+5. Verify the app still runs: `php artisan serve` and click around
+6. Write `docs/day-XX.md` reflection
+7. Commit: `git commit -m "day-XX: <focus area>"`
+8. Push to your fork
+
+## Day-by-day cheat sheet
+
+| Day | Focus | Files you'll touch |
+|---|---|---|
+| 1 | Setup | (none — just get it running) |
+| 2 | Routes & controllers | routes/web.php, app/Http/Controllers/* |
+| 3 | Blade views | resources/views/projects/*, tasks/* |
+| 4 | Migrations + seeders | database/migrations/*, database/seeders/* |
+| 5 | Eloquent CRUD | app/Models/*, app/Http/Controllers/* |
+| 6 | Relationships ⭐ MI #1 | app/Models/* (relationships only) |
+| 7 | Validation | app/Http/Requests/* |
+| 8 | Auth (install Breeze) | install Breeze; app/Models/User.php |
+| 9 | Authorization | app/Policies/*, app/Http/Middleware/CheckRole.php |
+| 10 | REST API ⭐ MI #2 | install Sanctum; routes/api.php; app/Http/Resources/* |
+| 11 | Files, mail, queues | app/Mail/TaskAssigned.php; storage handling |
+| 12 | Tests + deploy | tests/Feature/*; deploy to Laravel Cloud |
+
+## Rules
+
+- **One repo, all 12 days.** Don't create new repos for each day.
+- **Daily commits required.** Format: `git commit -m "day-XX: <focus area>"`
+- **`docs/day-XX.md` is mandatory** — this is your interview prep material.
+- **Don't push to the original scaffold** — you're working in YOUR fork.
+- **Stuck >45 min?** Ask in the cohort channel before going deeper.
+
+Good luck.
