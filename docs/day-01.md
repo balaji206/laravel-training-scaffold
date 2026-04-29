@@ -10,6 +10,7 @@
 
 ---
 
+
 ## Setup Gotchas I Faced
 
 * PHP ZIP file download kept failing due to network/K7 antivirus.
@@ -25,11 +26,14 @@
 
 ---
 
+
 ## Final Status
 
 * Laravel app running successfully on `http://localhost:8000`
 * Database connected and migrations working
 * Frontend assets compiled using Vite
+
+---
 
 ## 📸 Application Screenshot
 
