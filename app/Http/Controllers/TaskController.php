@@ -8,11 +8,12 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function index(Project $project)
+    public function index($project)
     {
         // TODO Day 5: return view('tasks.index', ['tasks' => $project->tasks]);
         // TODO Day 6: eager load — $project->load('tasks.comments', 'tasks.assignee');
-        abort(501, 'TODO Day 5 — implement task index');
+        return 'tasks of project ' . $project;
+       // abort(501, 'TODO Day 5 — implement task index');
     }
 
     public function create(Project $project)
@@ -29,10 +30,11 @@ class TaskController extends Controller
         abort(501, 'TODO Day 5 — implement task store');
     }
 
-    public function show(Task $task)
+    public function show($project, $task)
     {
         // TODO Day 5: return view('tasks.show', ['task' => $task]);
-        abort(501, 'TODO Day 5 — implement task show');
+        //abort(501, 'TODO Day 5 — implement task show');
+        return 'task ' . $task . ' of project ' . $project;
     }
 
     public function edit(Task $task)

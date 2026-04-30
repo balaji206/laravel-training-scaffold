@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes — Laravel Training Scaffold
@@ -25,6 +26,12 @@ Route::get('/', function () {
 //   - Same set for /tasks (nested under projects, e.g., /projects/{project}/tasks)
 // Hint: Route::resource('projects', ProjectController::class);
 // Wrap them in auth middleware (after Day 8): Route::middleware('auth')->group(function () { ... });
+
+Route::resource('projects', ProjectController::class);
+
+// Nested tasks under projects
+Route::resource('projects.tasks', TaskController::class);
+
 
 // TODO Day 8: install Breeze, then Breeze will add its own auth routes here
 // Run: composer require laravel/breeze --dev
