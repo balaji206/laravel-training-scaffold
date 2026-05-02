@@ -12,14 +12,21 @@ class TaskController extends Controller
     {
         // TODO Day 5: return view('tasks.index', ['tasks' => $project->tasks]);
         // TODO Day 6: eager load — $project->load('tasks.comments', 'tasks.assignee');
-        return 'tasks of project ' . $project;
+        
        // abort(501, 'TODO Day 5 — implement task index');
+        $tasks = [
+            ['id' => 1, 'title' => 'Task 1', 'status' => 'Pending'],
+            ['id' => 2, 'title' => 'Task 2', 'status' => 'Completed']
+        ];
+
+        return view('tasks.index', compact('tasks', 'project'));
     }
 
     public function create(Project $project)
     {
         // TODO Day 5: return view('tasks.create', ['project' => $project]);
-        abort(501, 'TODO Day 5 — implement task create');
+          return view('tasks.create', compact('project'));
+        //abort(501, 'TODO Day 5 — implement task create');
     }
 
     public function store(Request $request, Project $project)
@@ -34,14 +41,30 @@ class TaskController extends Controller
     {
         // TODO Day 5: return view('tasks.show', ['task' => $task]);
         //abort(501, 'TODO Day 5 — implement task show');
-        return 'task ' . $task . ' of project ' . $project;
+        //return 'task ' . $task . ' of project ' . $project;
+         $task = [
+            'id' => $task,
+            'title' => 'Task ' . $task,
+            'description' => 'Sample description',
+            'status' => 'Pending'
+        ];
+
+        return view('tasks.show', compact('task', 'project'));
     }
 
     public function edit(Task $task)
     {
         // TODO Day 5: return view('tasks.edit', ['task' => $task]);
         // TODO Day 9: $this->authorize('update', $task);
-        abort(501, 'TODO Day 5 — implement task edit');
+        // abort(501, 'TODO Day 5 — implement task edit');
+        $task = [
+            'id' => $task,
+            'title' => 'Task ' . $task,
+            'description' => 'Sample description',
+            'status' => 'Pending'
+        ];
+
+        return view('tasks.edit', compact('task', 'project'));
     }
 
     public function update(Request $request, Task $task)
