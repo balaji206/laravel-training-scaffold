@@ -8,78 +8,86 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function index($project)
+    
+    public function index(Project $project)
     {
-        // TODO Day 5: return view('tasks.index', ['tasks' => $project->tasks]);
-        // TODO Day 6: eager load — $project->load('tasks.comments', 'tasks.assignee');
-        
-       // abort(501, 'TODO Day 5 — implement task index');
-        $tasks = [
-            ['id' => 1, 'title' => 'Task 1', 'status' => 'Pending'],
-            ['id' => 2, 'title' => 'Task 2', 'status' => 'Completed']
-        ];
+    // TODO Day 6: eager load — $project->load('tasks.comments', 'tasks.assignee');
+    $tasks = $project->tasks; // uses relationship
 
-        return view('tasks.index', compact('tasks', 'project'));
-    }
+    return view('tasks.index', [
+        'tasks' => $tasks,
+        'project' => $project
+    ]);
+}
 
     public function create(Project $project)
     {
-        // TODO Day 5: return view('tasks.create', ['project' => $project]);
-          return view('tasks.create', compact('project'));
-        //abort(501, 'TODO Day 5 — implement task create');
+        
+         return view('tasks.create', ['project'=> $project]);
+        
     }
 
     public function store(Request $request, Project $project)
     {
-        // TODO Day 5: $project->tasks()->create([...]);
+        $request->validate([
+            'title' => 'required',
+            'description' => 'nullable',
+        ]);
+
+        Task::create([
+        'title' => $request->title,
+        'description' => $request->description,
+        'status'=>'todo',
+        'project_id' => $project->id,
+        'assigned_to_id'=>1
+    ]);
+
+    return redirect("/projects/{$project->id}/tasks");
         // TODO Day 7: use StoreTaskRequest
         // TODO Day 11: handle file upload — Storage::disk('public')->put(...)
-        abort(501, 'TODO Day 5 — implement task store');
     }
 
-    public function show($project, $task)
+    public function show(Project $project,Task $task)
     {
-        // TODO Day 5: return view('tasks.show', ['task' => $task]);
-        //abort(501, 'TODO Day 5 — implement task show');
+        
         //return 'task ' . $task . ' of project ' . $project;
-         $task = [
-            'id' => $task,
-            'title' => 'Task ' . $task,
-            'description' => 'Sample description',
-            'status' => 'Pending'
-        ];
+        
 
-        return view('tasks.show', compact('task', 'project'));
+        return view('tasks.show', ['task'=> $task,'project'=>$project]);
     }
 
-    public function edit(Task $task)
+    public function edit(Project $project, Task $task)
     {
-        // TODO Day 5: return view('tasks.edit', ['task' => $task]);
         // TODO Day 9: $this->authorize('update', $task);
-        // abort(501, 'TODO Day 5 — implement task edit');
-        $task = [
-            'id' => $task,
-            'title' => 'Task ' . $task,
-            'description' => 'Sample description',
-            'status' => 'Pending'
-        ];
+        
 
-        return view('tasks.edit', compact('task', 'project'));
+       
+
+        return view('tasks.edit',['task'=>$task,'project'=>$project]);
     }
 
-    public function update(Request $request, Task $task)
+    public function update(Request $request ,Project $project, Task $task )
     {
-        // TODO Day 5: $task->update([...]);
+       
         // TODO Day 7: use UpdateTaskRequest
         // TODO Day 9: $this->authorize('update', $task);
         // TODO Day 11: when assigned_to_id changes, dispatch TaskAssigned mail (queued)
-        abort(501, 'TODO Day 5 — implement task update');
+
+
+        $task->update([
+            'title'=>$request->title,
+            'description'=>$request->description,
+            'status'=>$request->status
+        ]);
+        return redirect("/projects/{$project->id}/tasks");
     }
 
-    public function destroy(Task $task)
+    public function destroy(Project $project,Task $task)
     {
-        // TODO Day 5: $task->delete();
+        $task->delete();
+        return redirect("/projects/{$project->id}/tasks");
+        
         // TODO Day 9: $this->authorize('delete', $task);
-        abort(501, 'TODO Day 5 — implement task destroy');
+        
     }
 }

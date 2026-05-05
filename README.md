@@ -57,7 +57,7 @@ If localhost:8000 loads, your Day 1 deliverable is done.
 Each day has tagged TODOs throughout the codebase. To see your tasks for the day:
 
 ```bash
-grep -rn "TODO Day 5"   # for Day 5
+
 grep -rn "TODO Day 6"   # for Day 6
 # etc.
 ```

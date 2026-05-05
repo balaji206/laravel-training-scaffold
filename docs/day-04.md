@@ -66,52 +66,11 @@ Comment::count();  // 50
 
 ## 6. ER Diagram
 
-```mermaid
-erDiagram
-    users ||--o{ projects : owned_by
-    users ||--o{ comments : written_by
-    projects ||--o{ tasks : contains
-    tasks ||--o{ comments : has
-    projects ||--o{ users : assigned_to
+![ER Diagram](./images/er-diagram.png)
 
-    users {
-        int id PK
-        string name
-        string email
-        string password
-    }
+### Tinker Output
 
-    projects {
-        int id PK
-        string name
-        string description
-        string status
-        int user_id FK
-    }
-
-    tasks {
-        int id PK
-        string title
-        string description
-        string status
-        date due_date
-        int project_id FK
-        int assigned_to_id FK
-    }
-
-    comments {
-        int id PK
-        text body
-        int user_id FK
-        int task_id FK
-    }
-
-    project_user {
-        int project_id FK
-        int user_id FK
-        PRIMARY KEY (project_id, user_id)
-    }
-```
+![Tinker Output](./images/tinker-output.png)
 
 ## 7. Final Status
 
@@ -122,4 +81,4 @@ erDiagram
 * Data verified using Tinker  
 * Database structure is ready for next phase  
 
-![Tinker Output](./images/tinker-output.png)
+
