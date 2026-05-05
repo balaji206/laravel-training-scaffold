@@ -44,7 +44,11 @@
                         <a href="/projects/{{ $project->id }}" class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors duration-200 line-clamp-2">
                             {{ $project->name }}
                         </a>
+                        <p class="text-sm text-slate-500 mt-2">
+    Tasks: {{ $project->tasks->count() }}
+</p>
                     </div>
+                    
 
                     {{-- Actions Footer --}}
                     <div class="mt-auto border-t border-slate-50 bg-slate-50/50 p-4 px-6 flex items-center justify-between">

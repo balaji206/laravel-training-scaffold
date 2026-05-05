@@ -21,8 +21,15 @@ class Project extends Model
         return $this->hasMany(Task::class);
     }
 
-    // TODO Day 6: define relationships
-    //   - tasks()    → $this->hasMany(Task::class)
-    //   - owner()    → $this->belongsTo(User::class, 'user_id')
-    //   - members()  → $this->belongsToMany(User::class, 'project_user')
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'project_user');
+    }
+
+   
 }

@@ -10,19 +10,17 @@ class ProjectController extends Controller
     public function index()
     {
         
-        
-        // TODO Day 6: add eager loading — Project::with('tasks')->get() — to fix N+1
+        $project = Project::with('tasks')->get(); // ❌ no eager loading
         // TODO Day 8: scope to logged-in user — auth()->user()->projects
         
          return view('projects.index', [
-        'projects' => Project::all()
+        'projects' => $project
     ]);
     }
    
 
     public function create()
     {
-        // TODO Day 2 (stub) → Day 5: return view('projects.create');
        return view('projects.create');
     }
 
@@ -48,9 +46,10 @@ class ProjectController extends Controller
 
     public function show(Project $project)
     {
-        // TODO Day 6: load relationships — $project->load('tasks.comments', 'members');
+        
         // TODO Day 9: $this->authorize('view', $project);
         
+        $project->load('tasks.comments', 'members','owner');
 
         return view('projects.show', compact('project'));
         

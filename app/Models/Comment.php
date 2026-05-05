@@ -14,7 +14,14 @@ class Comment extends Model
         'user_id',
         'task_id',
     ];
-    // TODO Day 6: define relationships
-    //   - task() → $this->belongsTo(Task::class)
-    //   - user() → $this->belongsTo(User::class)
+    
+
+    public function task()
+    {
+        return $this->belongsTo(Task::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -1,4 +1,4 @@
-{{-- TODO Day 6: list nested $project->tasks with their $task->comments --}}
+
 @extends('layouts.app')
 
 @section('content')
@@ -61,10 +61,7 @@
                             {{ $project->name }}
                         </dd>
                     </div>
-                    <a href="/projects/{{ $project->id }}/tasks"
-   class="inline-block mt-4 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg">
-    View Tasks
-</a>
+                    
                     <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50/50 transition-colors duration-150 rounded-2xl px-4 -mx-4">
                         <dt class="text-sm font-bold text-slate-900 flex items-start pt-1">
                             <span class="bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-lg shadow-sm">Description</span>
@@ -73,6 +70,57 @@
                             <div class="bg-slate-50/80 p-5 rounded-xl border border-slate-100 shadow-inner whitespace-pre-line">{{ $project->description }}</div>
                         </dd>
                     </div>
+
+                    <div class="mt-10">
+
+    <h2 class="text-xl font-bold text-slate-800 mb-4">
+        Tasks & Comments
+    </h2>
+
+    @if($project->tasks->isEmpty())
+        <p class="text-slate-500">No tasks found</p>
+    @endif
+
+    @foreach($project->tasks as $task)
+
+        <div class="mb-6 bg-slate-50 border rounded-xl p-5 shadow-sm">
+
+            {{-- Task Title --}}
+            <h3 class="text-lg font-semibold text-indigo-700">
+                {{ $task->title }}
+            </h3>
+
+            {{-- Status --}}
+            <p class="text-sm text-slate-500 mb-2">
+                Status: {{ $task->status }}
+            </p>
+
+            {{-- Comments --}}
+            <div class="mt-3">
+
+                <h4 class="text-sm font-semibold text-slate-700 mb-2">
+                    Comments:
+                </h4>
+
+                @if($task->comments->isEmpty())
+                    <p class="text-sm text-slate-400">No comments</p>
+                @endif
+
+                @foreach($task->comments as $comment)
+                    <div class="bg-white border rounded-lg px-3 py-2 mb-2 shadow-sm">
+                        <p class="text-sm text-slate-700">
+                            {{ $comment->content ?? 'No content' }}
+                        </p>
+                    </div>
+                @endforeach
+
+            </div>
+
+        </div>
+
+    @endforeach
+
+</div>
                 </dl>
             </div>
         </div>
