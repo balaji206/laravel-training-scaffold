@@ -9,8 +9,14 @@ class Task extends Model
 {
     use HasFactory;
 
-    // TODO Day 5: define $fillable — title, description, status, due_date, project_id, assigned_to_id
-
+    protected $fillable = [
+        'title',
+        'description',
+        'status',
+        'due_date',
+        'project_id',
+        'assigned_to_id',
+    ];
     // TODO Day 6: define relationships
     //   - project()  → $this->belongsTo(Project::class)
     //   - comments() → $this->hasMany(Comment::class)

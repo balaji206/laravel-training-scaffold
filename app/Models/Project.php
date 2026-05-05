@@ -9,7 +9,17 @@ class Project extends Model
 {
     use HasFactory;
 
-    // TODO Day 5: define $fillable — name, description, status, user_id
+    protected $fillable = [
+        'name',
+        'description',
+        'status',
+        'user_id',
+    ];
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 
     // TODO Day 6: define relationships
     //   - tasks()    → $this->hasMany(Task::class)

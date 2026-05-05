@@ -17,6 +17,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>

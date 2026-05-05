@@ -10,16 +10,13 @@ class ProjectController extends Controller
     public function index()
     {
         
-        // TODO Day 5: replace with — return view('projects.index', ['projects' => Project::all()]);
+        
         // TODO Day 6: add eager loading — Project::with('tasks')->get() — to fix N+1
         // TODO Day 8: scope to logged-in user — auth()->user()->projects
         
-        $projects = [
-            ['id' => 1, 'name' => 'Project 1'],
-            ['id' => 2, 'name' => 'Project 2'],
-        ];
-    
-        return view('projects.index', compact('projects'));
+         return view('projects.index', [
+        'projects' => Project::all()
+    ]);
     }
    
 
@@ -31,51 +28,61 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
-        // TODO Day 5: validate inline with $request->validate([...]), then Project::create([...])
+        
         // TODO Day 7: replace Request with StoreProjectRequest (Form Request)
         // TODO Day 8: associate with auth()->user() before creating
-        abort(501, 'TODO Day 5 — implement store');
+        $request->validate([
+            'name'=> 'required',
+            'description'=>'nullable'
+        ]);
+        
+        Project::create([
+            'name'=>$request->name,
+            'description'=>$request->description,
+            'status'=>'active',
+            'user_id'=>1
+        ]);
+        return redirect('/projects');
+        
     }
 
-    public function show($project)
+    public function show(Project $project)
     {
-        // TODO Day 5: return view('projects.show', ['project' => $project]);
         // TODO Day 6: load relationships — $project->load('tasks.comments', 'members');
         // TODO Day 9: $this->authorize('view', $project);
-        $project = [
-            'id' => $project,
-            'name' => 'Project ' . $project
-        ];
+        
 
         return view('projects.show', compact('project'));
-        // abort(501, 'TODO Day 5 — implement show');
+        
     }
 
-    public function edit($project)
+    public function edit(Project $project)
     {
-        $project = [
-        'id' => $project,
-        'name' => 'Project ' . $project
-    ];
+        
+
 
     return view('projects.edit', compact('project'));
-        // TODO Day 5: return view('projects.edit', ['project' => $project]);
         // TODO Day 9: $this->authorize('update', $project);
-        //abort(501, 'TODO Day 5 — implement edit');
+        
     }
 
     public function update(Request $request, Project $project)
     {
-        // TODO Day 5: $project->update([...]) then redirect
         // TODO Day 7: replace Request with UpdateProjectRequest
         // TODO Day 9: $this->authorize('update', $project);
-        abort(501, 'TODO Day 5 — implement update');
+        
+        $project->update([
+            'name'=>$request->name,
+            'description'=>$request->description,
+        ]);
+        return redirect('/projects');
     }
 
     public function destroy(Project $project)
     {
-        // TODO Day 5: $project->delete() then redirect
         // TODO Day 9: $this->authorize('delete', $project);
-        abort(501, 'TODO Day 5 — implement destroy');
+        
+        $project->delete();
+        return redirect('/projects');
     }
 }
