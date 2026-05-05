@@ -1,4 +1,4 @@
-{{-- TODO Day 6: list nested $task->comments --}}
+
 {{-- TODO Day 11: if $task->attachment_path exists, show a download link --}}
 @extends('layouts.app')
 
@@ -58,6 +58,34 @@
                 </div>
             </div>
 
+            <div class="mt-10 mx-4">
+                <h2 class="text-xl font-bold text-slate-800 mb-4">
+                    Comments
+                </h2>
+
+                @if($task->comments->isEmpty())
+                    <p class="text-slate-500">No comments found</p>
+                @endif
+
+                @foreach($task->comments as $comment)
+
+                    <div class="mb-4 bg-slate-50 border rounded-xl p-4 shadow-sm">
+
+                        {{-- Comment Content --}}
+                        <p class="text-sm text-slate-800">
+                            {{ $comment->content ?? 'No content' }}
+                        </p>
+
+                        {{-- Created Time --}}
+                        <p class="text-xs text-slate-400 mt-2">
+                            {{ $comment->created_at }}
+                        </p>
+                    </div>
+
+                @endforeach
+
+            </div>
+
             {{-- Footer / Actions --}}
             <div class="px-6 py-5 sm:px-8 bg-slate-50 border-t border-slate-100 flex flex-wrap items-center gap-3">
                 <a href="/projects/{{ $project->id }}/tasks/{{ $task->id }}/edit" 
@@ -76,6 +104,8 @@
                     </button>
                 </form>
             </div>
+
+
 
         </div>
     </div>

@@ -11,7 +11,7 @@ class TaskController extends Controller
     
     public function index(Project $project)
     {
-    // TODO Day 6: eager load — $project->load('tasks.comments', 'tasks.assignee');
+    $project->load(['tasks.comments', 'tasks.assignee']);
     $tasks = $project->tasks; // uses relationship
 
     return view('tasks.index', [
@@ -51,6 +51,7 @@ class TaskController extends Controller
     {
         
         //return 'task ' . $task . ' of project ' . $project;
+        $task->load('comments', 'assignee');
         
 
         return view('tasks.show', ['task'=> $task,'project'=>$project]);
