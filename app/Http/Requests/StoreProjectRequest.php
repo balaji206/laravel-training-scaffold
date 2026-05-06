@@ -13,17 +13,26 @@ class StoreProjectRequest extends FormRequest
 
     public function rules(): array
     {
-        // TODO Day 7: define validation rules
-        // Hint:
-        //   'name' => 'required|string|max:255',
-        //   'description' => 'nullable|string',
-        //   'status' => 'required|in:active,archived,completed',
-        return [];
+       
+        return [
+            'name' => 'required|string|min:3|max:255|not_in:test,dummy',
+            'description' => 'required|string|min:5',
+            'status' => 'nullable|in:active,archived,completed',
+        ];
     }
 
     public function messages(): array
     {
-        // TODO Day 7 (optional): customize error messages
-        return [];
+       
+        return [
+            'name.required' => 'Project name is required.',
+            'name.min' => 'Project name must contain at least 3 characters.',
+            'name.not_in' => 'Project name cannot be test or dummy.',
+            
+            'description.min' => 'Description must contain at least 5 characters.',
+
+            'status.required' => 'Status field is required.',
+            'status.in' => 'Status must be active, archived, or completed.',
+        ];
     }
 }

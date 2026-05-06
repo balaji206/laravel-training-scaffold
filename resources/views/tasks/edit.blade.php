@@ -1,4 +1,4 @@
-{{-- TODO Day 7: add @error directives --}}
+
 @extends('layouts.app')
 
 @section('content')
@@ -41,6 +41,11 @@
                     name="description"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 >{{ old('description', $task->description) }}</textarea>
+                @error('description')
+                    <p class="text-red-500 text-sm mt-1">
+                        {{ $message }}
+                    </p>
+                @enderror
             </div>
 
             {{-- Status --}}
@@ -56,6 +61,11 @@
                     <option value="in_progress" {{ $task->status == 'in_progress' ? 'selected' : '' }}>In Progress</option>
                     <option value="done" {{ $task->status == 'done' ? 'selected' : '' }}>Completed</option>
                 </select>
+                @error('status')
+                    <p class="text-red-500 text-sm mt-1">
+                        {{ $message }}
+                    </p>
+                @enderror
             </div>
 
             {{-- Buttons --}}

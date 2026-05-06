@@ -13,17 +13,23 @@ class UpdateProjectRequest extends FormRequest
 
     public function rules(): array
     {
-        // TODO Day 7: define validation rules
-        // Hint:
-        //   'name' => 'required|string|max:255',
-        //   'description' => 'nullable|string',
-        //   'status' => 'required|in:active,archived,completed',
-        return [];
+        
+        return [
+            'name' => 'required|string|max:255',
+            'description' => 'required|nullable|string',
+            'status' => 'nullable|in:active,archived,completed',
+        ];
     }
 
     public function messages(): array
     {
-        // TODO Day 7 (optional): customize error messages
-        return [];
+        
+        return [
+            'name.required' => 'Project name is required.',
+            'name.max' => 'Project name cannot exceed 255 characters.',
+            'description.min' => 'Description must be at least 5 characters.',
+            'status.required' => 'Status is required.',
+            'status.in' => 'Invalid status selected.',
+        ];
     }
 }
