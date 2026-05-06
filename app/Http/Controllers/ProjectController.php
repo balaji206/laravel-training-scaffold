@@ -4,17 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 
 class ProjectController extends Controller
 {
     public function index()
     {
         
-        $project = Project::with('tasks')->get(); // ❌ no eager loading
+        $projects = Project::with('tasks')->get(); // ❌ no eager loading
         // TODO Day 8: scope to logged-in user — auth()->user()->projects
         
          return view('projects.index', [
-        'projects' => $project
+        'projects' => $projects
     ]);
     }
    
@@ -24,15 +26,11 @@ class ProjectController extends Controller
        return view('projects.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
-        
-        // TODO Day 7: replace Request with StoreProjectRequest (Form Request)
+       
+       
         // TODO Day 8: associate with auth()->user() before creating
-        $request->validate([
-            'name'=> 'required',
-            'description'=>'nullable'
-        ]);
         
         Project::create([
             'name'=>$request->name,
@@ -65,10 +63,11 @@ class ProjectController extends Controller
         
     }
 
-    public function update(Request $request, Project $project)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
-        // TODO Day 7: replace Request with UpdateProjectRequest
+        
         // TODO Day 9: $this->authorize('update', $project);
+        
         
         $project->update([
             'name'=>$request->name,

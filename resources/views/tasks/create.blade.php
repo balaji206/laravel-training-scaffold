@@ -1,4 +1,4 @@
-{{-- TODO Day 7: add @error directives to display validation errors --}}
+
 {{-- TODO Day 11: add file upload input (enctype="multipart/form-data") --}}
 @extends('layouts.app')
 
@@ -45,6 +45,15 @@
                         class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent focus:bg-white transition-all duration-200 shadow-sm resize-y"
                         placeholder="Provide more details about this task..."
                     >{{ old('description') }}</textarea>
+                    @error('description')
+                        <p class="mt-2 text-sm font-medium text-red-500 flex items-center">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
 
                 {{-- Status --}}
@@ -56,6 +65,15 @@
                             <option value="in_progress">In Progress</option>
                             <option value="done">Completed</option>
                         </select>
+                        @error('status')
+                            <p class="mt-2 text-sm font-medium text-red-500 flex items-center">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                {{ $message }}
+                            </p>
+                        @enderror
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
                             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>

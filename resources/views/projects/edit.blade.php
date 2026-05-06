@@ -1,4 +1,3 @@
-<!-- {{-- TODO Day 7: add @error directives --}} -->
 @extends('layouts.app')
 
 @section('content')

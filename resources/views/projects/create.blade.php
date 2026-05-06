@@ -1,9 +1,3 @@
-<!-- 
-    
-    {{-- TODO Day 7: add @error directives to display validation errors --}} -->
-
-    
-
 @extends('layouts.app')
 
 @section('content')

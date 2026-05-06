@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Project;
 use App\Models\Task;
 use Illuminate\Http\Request;
@@ -27,23 +29,19 @@ class TaskController extends Controller
         
     }
 
-    public function store(Request $request, Project $project)
+    public function store(StoreTaskRequest $request, Project $project)
     {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'nullable',
-        ]);
+       
 
         Task::create([
         'title' => $request->title,
         'description' => $request->description,
-        'status'=>'todo',
+        'status'=>$request->status,
         'project_id' => $project->id,
         'assigned_to_id'=>1
     ]);
 
     return redirect("/projects/{$project->id}/tasks");
-        // TODO Day 7: use StoreTaskRequest
         // TODO Day 11: handle file upload — Storage::disk('public')->put(...)
     }
 
@@ -67,10 +65,10 @@ class TaskController extends Controller
         return view('tasks.edit',['task'=>$task,'project'=>$project]);
     }
 
-    public function update(Request $request ,Project $project, Task $task )
+    public function update(UpdateTaskRequest $request ,Project $project, Task $task )
     {
        
-        // TODO Day 7: use UpdateTaskRequest
+        
         // TODO Day 9: $this->authorize('update', $task);
         // TODO Day 11: when assigned_to_id changes, dispatch TaskAssigned mail (queued)
 
