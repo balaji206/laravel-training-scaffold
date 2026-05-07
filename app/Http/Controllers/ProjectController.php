@@ -12,9 +12,11 @@ class ProjectController extends Controller
     public function index()
     {
         
-        $projects = Project::with('tasks')->get(); // ❌ no eager loading
-        // TODO Day 8: scope to logged-in user — auth()->user()->projects
-        
+        $projects = auth()->user()
+    ->projects()
+    ->with('tasks')
+    ->get();
+        auth()->user()->can('view',$projects);
          return view('projects.index', [
         'projects' => $projects
     ]);
@@ -30,13 +32,12 @@ class ProjectController extends Controller
     {
        
        
-        // TODO Day 8: associate with auth()->user() before creating
-        
+        auth()->user()->can('create',$project);
         Project::create([
             'name'=>$request->name,
             'description'=>$request->description,
             'status'=>'active',
-            'user_id'=>1
+            'user_id' => auth()->id()
         ]);
         return redirect('/projects');
         
@@ -45,10 +46,10 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         
-        // TODO Day 9: $this->authorize('view', $project);
         
         $project->load('tasks.comments', 'members','owner');
 
+        $this->authorize('view', $project);
         return view('projects.show', compact('project'));
         
     }
@@ -56,18 +57,16 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         
-
+        $this->authorize('update', $project);
 
     return view('projects.edit', compact('project'));
-        // TODO Day 9: $this->authorize('update', $project);
         
     }
 
     public function update(UpdateProjectRequest $request, Project $project)
     {
         
-        // TODO Day 9: $this->authorize('update', $project);
-        
+        $this->authorize('update', $project);
         
         $project->update([
             'name'=>$request->name,
@@ -79,7 +78,7 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         // TODO Day 9: $this->authorize('delete', $project);
-        
+        $this->authorize('delete', $project);
         $project->delete();
         return redirect('/projects');
     }

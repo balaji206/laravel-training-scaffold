@@ -116,7 +116,7 @@ Added inline validation error handling using:
 
 ### Screenshots
 
-![Validation Error State](./images/validation-error.png)
+![Validation Error State](./images/validation.png)
 
 
 ## Challenges Faced
