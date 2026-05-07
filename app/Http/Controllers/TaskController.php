@@ -57,9 +57,8 @@ class TaskController extends Controller
 
     public function edit(Project $project, Task $task)
     {
-        // TODO Day 9: $this->authorize('update', $task);
         
-
+        $this->authorize('update', $task);
        
 
         return view('tasks.edit',['task'=>$task,'project'=>$project]);
@@ -69,10 +68,9 @@ class TaskController extends Controller
     {
        
         
-        // TODO Day 9: $this->authorize('update', $task);
         // TODO Day 11: when assigned_to_id changes, dispatch TaskAssigned mail (queued)
 
-
+        $this->authorize('update', $task);
         $task->update([
             'title'=>$request->title,
             'description'=>$request->description,
@@ -85,8 +83,8 @@ class TaskController extends Controller
     {
         $task->delete();
         return redirect("/projects/{$project->id}/tasks");
-        
-        // TODO Day 9: $this->authorize('delete', $task);
+        $this->authorize('delete', $task);
+    
         
     }
 }

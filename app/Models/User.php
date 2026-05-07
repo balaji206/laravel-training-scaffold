@@ -15,6 +15,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
         // TODO Day 9: add 'role' here once you create the migration
     ];
 
@@ -28,7 +29,7 @@ class User extends Authenticatable
     
     public function projects()
     {
-        return $this->belongsToMany(Project::class, 'project_user');
+        return $this->hasMany(Project::class);
     }
     public function ownedProjects()
     {
