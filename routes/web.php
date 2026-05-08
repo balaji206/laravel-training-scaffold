@@ -24,13 +24,10 @@ Route::get('/admin', function () {
     return 'Admin Dashboard';
 })->middleware(['auth', 'role:admin']);
 
-// Route::middleware('auth')->group(function () {
-
-    
-// });
-Route::resource('projects', ProjectController::class);
-
-Route::resource('projects.tasks', TaskController::class);
+Route::middleware('auth')->group(function () {
+    Route::resource('projects', ProjectController::class);
+    Route::resource('projects.tasks', TaskController::class);
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
