@@ -1,5 +1,3 @@
-{{-- Should display all projects in a Tailwind grid; each card links to the show page --}}
-{{-- TODO Day 9: use @can('update', $project) to conditionally show edit/delete buttons --}}
 @extends('layouts.app')
 
 @section('content')

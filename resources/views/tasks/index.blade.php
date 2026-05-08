@@ -1,6 +1,3 @@
-{{-- Should display all tasks for the current project, grouped or filtered by status --}}
-
-{{-- TODO Day 9: use @can('update', $task) to conditionally show edit/delete buttons --}}
 @extends('layouts.app')
 
 @section('content')
