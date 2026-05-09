@@ -85,7 +85,7 @@ Route::get('/admin', function () {
 })->middleware(['auth', 'role:admin']);
 
 ```
-Result
+**Result**
 
 * Guests cannot access protected routes
 * Only admins can access admin routes
@@ -104,11 +104,12 @@ Only authorized users can see edit/delete buttons.
 Updated:
 
 public const HOME = '/projects';
-Result
 
-Users are redirected to the projects page after login.
+**Result**
 
-User Model Update
+* Users are redirected to the projects page after login.
+
+*User Model Update*
 
 Added role field to fillable array:
 ```php
