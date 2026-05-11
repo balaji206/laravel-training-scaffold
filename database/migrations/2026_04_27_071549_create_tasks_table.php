@@ -21,8 +21,8 @@ return new class extends Migration
                   ->nullable()
                   ->constrained('users')
                   ->nullOnDelete();
+                  $table->string('attachment_path')->nullable();
             
-            // TODO Day 11: add 'attachment_path' column (string, nullable) for file uploads
             $table->timestamps();
         });
     }

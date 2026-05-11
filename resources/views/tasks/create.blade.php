@@ -15,7 +15,7 @@
 
         {{-- Form Card --}}
         <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
-            <form method="POST" action="/projects/{{ $project->id }}/tasks" class="p-6 sm:p-8">
+            <form method="POST" action="/projects/{{ $project->id }}/tasks" enctype="multipart/form-data" class="p-6 sm:p-8">
                 @csrf
 
                 {{-- Title --}}
@@ -79,6 +79,45 @@
                         </div>
                     </div>
                 </div>
+
+                {{-- Attachment --}}
+                <div class="mb-6">
+                    <label class="block text-sm font-bold text-slate-700 mb-2">
+                        Attachment
+                    </label>
+                    <input type="file" name="attachment" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900">
+                    @error('attachment')
+                        <p class="mt-2 text-sm font-medium text-red-500">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
+                {{-- Assign User --}}
+                <div class="mb-6">
+
+                    <label class="block text-sm font-bold text-slate-700 mb-2">
+                        Assign To
+                    </label>
+
+                    <select 
+                        name="assigned_to_id"
+                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3"
+                    >
+
+                        <option value="">Select User</option>
+
+                        @foreach($users as $user)
+
+                            <option value="{{ $user->id }}">
+                                {{ $user->name }}
+                            </option>
+
+                        @endforeach
+
+                    </select>
+
+</div>
 
                 {{-- Actions --}}
                 <div class="flex items-center justify-end pt-4 border-t border-slate-100 mt-2 gap-4">

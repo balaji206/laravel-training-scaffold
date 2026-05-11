@@ -32,7 +32,7 @@ class ProjectController extends Controller
     {
        
        
-        auth()->user()->can('create',$project);
+    
         Project::create([
             'name'=>$request->name,
             'description'=>$request->description,

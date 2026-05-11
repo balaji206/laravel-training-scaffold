@@ -29,6 +29,7 @@ Route::middleware('auth:sanctum')->group(function () {
 //   4. Add HasApiTokens trait to app/Models/User.php
 //
 // Endpoints to build:
+
 //   POST   /api/login                   → return Sanctum token
 //   POST   /api/logout                  → revoke token (auth:sanctum)
 //   GET    /api/projects                → list logged-in user's projects (auth:sanctum)

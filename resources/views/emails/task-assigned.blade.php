@@ -1,10 +1,23 @@
+
+
 <x-mail::message>
-{{-- TODO Day 11: design the email — greet the user, show task title, due date, link --}}
 # Task Assigned
 
-TODO Day 11 — populate this email template
+Hello,
 
-<x-mail::button :url="''">
+You have been assigned a new task.
+
+## Task Details
+
+**Title:** {{ $task->title }}
+
+**Description:** {{ $task->description }}
+
+@if($task->due_date)
+**Due Date:** {{ $task->due_date }}
+@endif
+
+<x-mail::button :url="url('/projects/' . $task->project_id . '/tasks/' . $task->id)">
 View Task
 </x-mail::button>
 

@@ -18,6 +18,8 @@ class UpdateTaskRequest extends FormRequest
             'title' => 'required|string|min:3|max:255|not_in:test,dummy',
             'description' => 'required|string|min:5',
             'status' => 'nullable|in:todo,in_progress,done',
+            'attachment' => 'nullable|file|mimes:jpg,png,pdf|max:2048',
+            'assigned_to_id' => 'nullable|exists:users,id',
         ];
     }
 
