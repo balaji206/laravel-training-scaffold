@@ -14,7 +14,7 @@ class TaskStatusNotification extends Notification
 
     /**
      * Create a new notification instance.
-     */
+     */     
     public $task;
 
     public function __construct(Task $task)

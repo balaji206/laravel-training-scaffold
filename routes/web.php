@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Task;
+use App\Mail\TaskAssigned;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
@@ -15,6 +18,7 @@ use App\Http\Controllers\TaskController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 
 Route::get('/', function () {
     return view('home');

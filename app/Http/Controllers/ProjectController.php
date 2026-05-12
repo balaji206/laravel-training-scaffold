@@ -31,8 +31,8 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
        
-       
-        auth()->user()->can('create',$project);
+       $this->authorize('create', Project::class);
+    
         Project::create([
             'name'=>$request->name,
             'description'=>$request->description,

@@ -22,7 +22,7 @@ return new class extends Migration
                   ->constrained('users')
                   ->nullOnDelete();
             
-            // TODO Day 11: add 'attachment_path' column (string, nullable) for file uploads
+            
             $table->timestamps();
         });
     }

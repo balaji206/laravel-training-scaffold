@@ -68,6 +68,39 @@
                 @enderror
             </div>
 
+            <div class="mb-6">
+
+    <label class="block text-sm font-bold text-slate-700 mb-2">
+        Assign To
+    </label>
+
+    <select 
+        name="assigned_to_id"
+        class="w-full border rounded px-4 py-2"
+    >
+
+        <option value="">Select User</option>
+
+        @foreach($users as $user)
+
+            <option 
+                value="{{ $user->id }}"
+                {{ old('assigned_to_id', $task->assigned_to_id) == $user->id ? 'selected' : '' }}
+            >
+                {{ $user->name }}
+            </option>
+
+        @endforeach
+
+    </select>
+    @error('assigned_to_id')
+
+    <p class="text-red-500 text-sm mt-1">
+        {{ $message }}
+    </p>
+
+@enderror
+</div>
             {{-- Buttons --}}
             <div class="flex items-center justify-between">
 
