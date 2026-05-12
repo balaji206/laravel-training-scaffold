@@ -21,7 +21,7 @@ class ProjectFactory extends Factory
             'name' => $this->faker->sentence(3),
             'description' => $this->faker->paragraph(),
             'status' => 'active',
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => User::factory(),
         ];
     }
 }

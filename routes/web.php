@@ -24,11 +24,13 @@ Route::get('/', function () {
     return view('home');
 });
 
+
 Route::get('/admin', function () {
     return 'Admin Dashboard';
 })->middleware(['auth', 'role:admin']);
 
 Route::middleware('auth')->group(function () {
+    Route::get('/completed-tasks', [TaskController::class, 'completedTasks'])->name('completed-tasks');
     Route::resource('projects', ProjectController::class);
     Route::resource('projects.tasks', TaskController::class);
 });
@@ -38,6 +40,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
