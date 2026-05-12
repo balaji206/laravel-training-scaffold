@@ -81,14 +81,14 @@
 
                 </div>
 
+                
+                @endif
                 @if($task->assignee)
 
                     <p class="text-sm font-bold text-slate-700 mb-2">
                         Assigned To: {{ $task->assignee->name }}
                     </p>
                 @endif
-                
-            @endif
             <div class="mt-10 mx-4">
                 <h2 class="text-xl font-bold text-slate-800 mb-4">
                     Comments

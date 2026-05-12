@@ -85,7 +85,7 @@
 
             <option 
                 value="{{ $user->id }}"
-                {{ $task->assigned_to_id == $user->id ? 'selected' : '' }}
+                {{ old('assigned_to_id', $task->assigned_to_id) == $user->id ? 'selected' : '' }}
             >
                 {{ $user->name }}
             </option>
@@ -93,7 +93,13 @@
         @endforeach
 
     </select>
+    @error('assigned_to_id')
 
+    <p class="text-red-500 text-sm mt-1">
+        {{ $message }}
+    </p>
+
+@enderror
 </div>
             {{-- Buttons --}}
             <div class="flex items-center justify-between">

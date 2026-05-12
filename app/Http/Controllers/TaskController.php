@@ -113,6 +113,9 @@ class TaskController extends Controller
     public function destroy(Project $project,Task $task)
     {
         $this->authorize('delete', $task);
+        if ($task->attachment_path) {
+            Storage::disk('public')->delete($task->attachment_path);
+        }
         $task->delete();
         return redirect("/projects/{$project->id}/tasks");
     
