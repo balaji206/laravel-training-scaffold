@@ -19,7 +19,7 @@ RUN composer install --optimize-autoloader --no-dev
 
 RUN npm install
 
-RUN npm run build
+RUN npm run dev
 
 RUN php artisan config:clear
 
