@@ -68,6 +68,9 @@ You can also see ALL TODOs at once:
 grep -rn "TODO Day" --include="*.php" --include="*.blade.php"
 ```
 
+1. Ensure you have your personal GitHub fork ready.
+
+
 ## Daily workflow
 
 1. Open the spreadsheet — find today's row
