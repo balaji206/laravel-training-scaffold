@@ -29,6 +29,7 @@ class TaskPolicy
 
     public function delete(User $user, Task $task): bool
     {
+        
         return $user->id === $task->project->user_id;
     }
 }   

@@ -121,4 +121,12 @@ class TaskController extends Controller
     
         
     }
+
+    public function completedTasks()
+    {
+        $tasks = Task::where('status','done')
+        ->with('project:id,name')->get();
+
+        return view('tasks.completed-tasks',compact('tasks'));
+    }
 }
