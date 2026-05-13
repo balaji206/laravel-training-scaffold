@@ -1,5 +1,4 @@
 
-{{-- TODO Day 11: add file upload input (enctype="multipart/form-data") --}}
 @extends('layouts.app')
 
 @section('content')

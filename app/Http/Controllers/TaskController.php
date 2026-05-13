@@ -51,13 +51,11 @@ class TaskController extends Controller
     ]);
 
     return redirect("/projects/{$project->id}/tasks");
-        // TODO Day 11: handle file upload — Storage::disk('public')->put(...)
     }
 
     public function show(Project $project,Task $task)
     {
         
-        //return 'task ' . $task . ' of project ' . $project;
         $task->load('comments', 'assignee');
         
 
@@ -77,7 +75,6 @@ class TaskController extends Controller
     {
        
         
-        // TODO Day 11: when assigned_to_id changes, dispatch TaskAssigned mail (queued)
 
         $this->authorize('update', $task);
 

@@ -15,7 +15,6 @@ class RelationshipTest extends TestCase
     /** @test */
     public function project_has_many_tasks()
     {
-        // TODO Day 12: create project, attach tasks, assert $project->tasks->count() === N
         $project  = Project::factory()->create();
         Task::factory()->count(3)->create([
             'project_id' => $project->id,
@@ -27,7 +26,6 @@ class RelationshipTest extends TestCase
     /** @test */
     public function user_belongs_to_many_projects()
     {
-        // TODO Day 12: assert $user->projects relationship works (pivot table)
         $user = User::factory()->create();
         Project::factory()->count(2)->create([
             'user_id' => $user->id,

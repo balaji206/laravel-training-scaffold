@@ -1,5 +1,4 @@
 
-{{-- TODO Day 11: if $task->attachment_path exists, show a download link --}}
 @extends('layouts.app')
 
 @section('content')
