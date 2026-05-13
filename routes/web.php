@@ -39,6 +39,8 @@ Route::get('/make-admin', function () {
     return 'Admin updated successfully';
 });
 
+
+
 Route::get('/admin', function () {
     return 'Admin Dashboard';
 })->middleware(['auth', 'role:admin']);
