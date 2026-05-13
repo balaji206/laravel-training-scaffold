@@ -19,10 +19,10 @@ use App\Http\Controllers\TaskController;
 |
 */
 
-
 Route::get('/', function () {
     return view('home');
 });
+
 
 Route::get('/make-admin', function () {
 
@@ -38,6 +38,7 @@ Route::get('/make-admin', function () {
 
     return 'Admin updated successfully';
 });
+
 
 Route::get('/admin', function () {
     return 'Admin Dashboard';
