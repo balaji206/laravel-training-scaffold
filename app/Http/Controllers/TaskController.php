@@ -1,17 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Mail\TaskUpdated;
+// use App\Mail\TaskUpdated;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Project;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\Mail\TaskAssigned;
-use Illuminate\Support\Facades\Mail;
+// use App\Mail\TaskAssigned;
+// use Illuminate\Support\Facades\Mail;
+
+
 use App\Models\User;
 use App\Services\BrevoMailService;
+
 
 class TaskController extends Controller
 {
