@@ -168,18 +168,18 @@ https://laravel-training-scaffold.onrender.com/
 
 ![Home](screenshots/home.png)
 ## Login Page
-![Login](screenshots/login.png)
+![Login](docs/images/login.png)
 ## Dashboard
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](./docs/images/dashboard.png)
 ## Projects Page
-![Projects](screenshots/projects.png)
+![Projects](./docs/images/projects.png)
 ## Tasks Page
-![Tasks](screenshots/tasks.png)
+![Tasks](./docs/images/tasks.png)
 
 ## ER Diagram
 
 
-![ER Diagram](./images/er-diagram.png)
+![ER Diagram](./docs/images/er-diagram.png)
 
 ## Authentication
 
