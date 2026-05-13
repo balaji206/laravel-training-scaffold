@@ -166,11 +166,9 @@ https://laravel-training-scaffold.onrender.com/
 
 ## Home Page
 
-![Home](screenshots/home.png)
+![Home](docs/images/Home.png)
 ## Login Page
 ![Login](docs/images/login.png)
-## Dashboard
-![Dashboard](./docs/images/dashboard.png)
 ## Projects Page
 ![Projects](./docs/images/projects.png)
 ## Tasks Page
