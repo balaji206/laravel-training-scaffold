@@ -20,7 +20,6 @@ Route::middleware('auth:sanctum')->group(function () {
 |--------------------------------------------------------------------------
 */
 
-// TODO Day 10: install Sanctum and build out the API
 //
 // Setup steps:
 //   1. composer require laravel/sanctum
