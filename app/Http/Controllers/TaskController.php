@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Mail\TaskAssigned;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
+use App\Services\BrevoMailService;
 
 class TaskController extends Controller
 {
@@ -54,14 +55,36 @@ $task->load('assignee');
 
 if ($task->assignee) {
 
-    // Mail to assigned user
-    Mail::to($task->assignee->email)
-        ->send(new TaskAssigned($task));
+    BrevoMailService::send(
+        $task->assignee->email,
+        $task->assignee->name,
+        'New Task Assigned',
+        "
+        <h1>Task Assigned</h1>
+
+        <p>You have been assigned a new task.</p>
+
+        <p><strong>Title:</strong> {$task->title}</p>
+
+        <p><strong>Description:</strong> {$task->description}</p>
+
+        <p><strong>Status:</strong> {$task->status}</p>
+        "
+    );
 }
 
-// Mail to admin/creator
-Mail::to(auth()->user()->email)
-    ->send(new TaskUpdated($task));
+BrevoMailService::send(
+    auth()->user()->email,
+    auth()->user()->name,
+    'Task Created Successfully',
+    "
+    <h1>Task Created</h1>
+
+    <p>Your task was created successfully.</p>
+
+    <p><strong>Title:</strong> {$task->title}</p>
+    "
+);
 
     return redirect("/projects/{$project->id}/tasks");
     }
@@ -109,14 +132,36 @@ Mail::to(auth()->user()->email)
         
         if ($task->assignee) {
 
-    // Mail to assigned user
-    Mail::to($task->assignee->email)
-        ->send(new TaskAssigned($task));
+    BrevoMailService::send(
+        $task->assignee->email,
+        $task->assignee->name,
+        'Task Updated',
+        "
+        <h1>Task Updated</h1>
+
+        <p>Your assigned task has been updated.</p>
+
+        <p><strong>Title:</strong> {$task->title}</p>
+
+        <p><strong>Description:</strong> {$task->description}</p>
+
+        <p><strong>Status:</strong> {$task->status}</p>
+        "
+    );
 }
 
-// Mail to admin/updater
-Mail::to(auth()->user()->email)
-    ->send(new TaskUpdated($task));
+BrevoMailService::send(
+    auth()->user()->email,
+    auth()->user()->name,
+    'Task Updated Successfully',
+    "
+    <h1>Task Updated</h1>
+
+    <p>The task was updated successfully.</p>
+
+    <p><strong>Title:</strong> {$task->title}</p>
+    "
+);
 
 
         return redirect("/projects/{$project->id}/tasks");
