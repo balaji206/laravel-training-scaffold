@@ -24,20 +24,6 @@ Route::get('/', function () {
 });
 
 
-Route::get('/make-admin', function () {
-
-    $user = \App\Models\User::where('email', 'admin@gmail.com')->first();
-
-    if (!$user) {
-        return 'User not found';
-    }
-
-    $user->role = 'admin';
-
-    $user->save();
-
-    return 'Admin updated successfully';
-});
 
 
 Route::get('/admin', function () {
