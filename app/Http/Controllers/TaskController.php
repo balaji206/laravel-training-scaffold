@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 
 use App\Models\User;
-use App\Services\BrevoMailService;
+use App\services\BrevoMailService;
 
 
 class TaskController extends Controller
