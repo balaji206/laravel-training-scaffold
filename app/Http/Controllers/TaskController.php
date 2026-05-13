@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Mail\TaskUpdated;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Project;
@@ -16,15 +16,15 @@ class TaskController extends Controller
 {
     
     public function index(Project $project)
-    {
-    $project->load(['tasks.comments', 'tasks.assignee']);
-    $tasks = $project->tasks; // uses relationship
+{
+    $tasks = $project->tasks;
 
     return view('tasks.index', [
         'tasks' => $tasks,
         'project' => $project
     ]);
 }
+
 
     public function create(Project $project)
     {
@@ -41,14 +41,27 @@ class TaskController extends Controller
             $path = $request->file('attachment')->store('attachments', 'public');
         }
 
-        Task::create([
-        'title' => $request->title,
-        'description' => $request->description,
-        'status'=>$request->status,
-        'project_id' => $project->id,
-        'assigned_to_id' => $request->assigned_to_id,
-        'attachment_path'=>$path
-    ]);
+        $task = Task::create([
+    'title' => $request->title,
+    'description' => $request->description,
+    'status' => $request->status,
+    'project_id' => $project->id,
+    'assigned_to_id' => $request->assigned_to_id,
+    'attachment_path' => $path
+]);
+
+$task->load('assignee');
+
+if ($task->assignee) {
+
+    // Mail to assigned user
+    Mail::to($task->assignee->email)
+        ->send(new TaskAssigned($task));
+}
+
+// Mail to admin/creator
+Mail::to(auth()->user()->email)
+    ->send(new TaskUpdated($task));
 
     return redirect("/projects/{$project->id}/tasks");
     }
@@ -94,14 +107,16 @@ class TaskController extends Controller
     // Mail::to($task->assignee->email)
     //     ->send(new TaskAssigned($task));
         
-        if(
-            $request->assigned_to_id &&
-            $oldAssignedTo != $task->assigned_to_id &&
-            $task->assignee
-        ){
-            
-            Mail::to($task->assignee->email)->queue(new TaskAssigned($task));
-        }
+        if ($task->assignee) {
+
+    // Mail to assigned user
+    Mail::to($task->assignee->email)
+        ->send(new TaskAssigned($task));
+}
+
+// Mail to admin/updater
+Mail::to(auth()->user()->email)
+    ->send(new TaskUpdated($task));
 
 
         return redirect("/projects/{$project->id}/tasks");

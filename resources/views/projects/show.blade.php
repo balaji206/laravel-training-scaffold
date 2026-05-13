@@ -76,6 +76,27 @@
     <h2 class="text-xl font-bold text-slate-800 mb-4">
         Tasks & Comments
     </h2>
+    <div class="mb-6">
+    <a href="/projects/{{ $project->id }}/tasks"
+       class="inline-flex items-center px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-sm transition">
+
+        <svg class="w-4 h-4 mr-2"
+             fill="none"
+             stroke="currentColor"
+             viewBox="0 0 24 24">
+
+            <path stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2m-1-9l-7 7-4 1 1-4 7-7a2.828 2.828 0 114 4z">
+            </path>
+
+        </svg>
+
+        View Tasks
+
+    </a>
+</div>
 
     @if($project->tasks->isEmpty())
         <p class="text-slate-500">No tasks found</p>
@@ -95,6 +116,27 @@
                 Status: {{ $task->status }}
             </p>
 
+            <div class="mt-4">
+    <a href="/projects/{{ $project->id }}/tasks/{{ $task->id }}"
+       class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-sm transition">
+
+        <svg class="w-4 h-4 mr-2"
+             fill="none"
+             stroke="currentColor"
+             viewBox="0 0 24 24">
+
+            <path stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2m-1-9l-7 7-4 1 1-4 7-7a2.828 2.828 0 114 4z">
+            </path>
+
+        </svg>
+
+        View Task
+
+    </a>
+</div>
             {{-- Comments --}}
             <div class="mt-3">
 

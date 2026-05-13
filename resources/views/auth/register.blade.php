@@ -16,7 +16,7 @@
         font-weight: bold;
         margin-bottom: 10px;
     ">
-        Create Account 🚀
+        Create Account
     </h1>
 
     <p style="

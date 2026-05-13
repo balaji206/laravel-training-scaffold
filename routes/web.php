@@ -20,10 +20,24 @@ use App\Http\Controllers\TaskController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('dashboard');
 });
 
+Route::get('/mail-driver', function () {
+    return config('mail.default');
+});
 
+Route::get('/test-mail', function () {
+
+    Mail::raw('<h1>Resend working bro!</h1>', function ($message) {
+
+        $message->to('balajier2006@gmail.com')
+                ->subject('Laravel Resend Test');
+
+    });
+
+    return 'Mail Sent!';
+});
 
 
 Route::get('/admin', function () {
@@ -37,7 +51,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return 'dashboard working';
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

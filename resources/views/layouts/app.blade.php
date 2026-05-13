@@ -61,7 +61,26 @@
                 @endguest
 
                 @auth
+                    @if(Request::is('/'))
+
+<a href="/projects"
+   class="hidden sm:inline-flex items-center px-4 py-2 mr-4 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-sm transition">
+
+    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 7h18M3 12h18M3 17h18">
+        </path>
+    </svg>
+
+    Projects
+
+</a>
+
+@endif
                     <div class="flex items-center gap-4 bg-white px-4 py-1.5 rounded-full border border-slate-200 shadow-sm">
+                        
                         <span class="text-sm font-bold text-slate-700">{{ Auth::user()->name }}</span>
                         <form action="{{ route('logout') }}" method="POST" class="inline border-l border-slate-100 pl-3">
                             @csrf
